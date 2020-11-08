@@ -6,6 +6,9 @@ const axios = require('axios');
 
 const { config } = require('./config');
 
+const THIRTY_DAYS_IN_MSEC = 2592000000;
+const TWO_HOURS_IN_MSEC = 7200000;
+
 const app = express();
 
 // body parser
@@ -16,6 +19,7 @@ app.use(cookieParser());
 require('./utils/auth/strategies/basic');
 
 app.post('/auth/sign-in', async function (req, res, next) {
+  const { rememberMe } = req.body;
   passport.authenticate('basic', function (error, data) {
     try {
       if (error || !data) {
@@ -26,7 +30,11 @@ app.post('/auth/sign-in', async function (req, res, next) {
           next(error);
         }
         const { token, ...user } = data;
-        res.cookie('token', token, { httpOnly: !config.dev, secure: !config.dev });
+        res.cookie('token', token, {
+          httpOnly: !config.dev,
+          secure: !config.dev,
+          maxAge: rememberMe ? THIRTY_DAYS_IN_MSEC : TWO_HOURS_IN_MSEC,
+        });
         res.status(200).json(user);
       });
     } catch (error) {
