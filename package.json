@@ -1,14 +1,14 @@
 {
-  "name": "ssr-server",
+  "name": "curso_passport_render_server",
   "version": "1.0.0",
-  "description": "",
+  "description": "Render Server desarrollado en el Curso de Autenticación con Passport.js de Platzi",
   "main": "index.js",
   "scripts": {
     "dev": "cross-env DEBUG=express:*,app:* nodemon index",
     "start": "cross-env NODE_ENV=production node index"
   },
   "keywords": [],
-  "author": "",
+  "author": "cristianiniguez <felizpc1@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "@hapi/boom": "^9.1.0",
@@ -29,5 +29,13 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.6"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cristianiniguez/curso_passportjs_render_server.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cristianiniguez/curso_passportjs_render_server/issues"
+  },
+  "homepage": "https://github.com/cristianiniguez/curso_passportjs_render_server#readme"
 }
